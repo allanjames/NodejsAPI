@@ -1,8 +1,11 @@
 require("dotenv").config();
 const express = require('express');
+const router = express.Router();
 const app = express();
 const blogRoutes = require('./routes/blogRoutes');
 const catRoutes = require('./routes/categories');
+const login = require('./routes/login');
+const user = require('./routes/user');
 const parser  = require('body-parser');
 const mongoose = require("mongoose");
 const pw = "nVWhwQPryOLEMEVD";
@@ -33,10 +36,12 @@ app.use((req, res, next) => {
 //Active Routes//
 app.use('/blog', blogRoutes);
 app.use('/blog/categories', catRoutes);
+app.use('/login', login);
+app.use('/signup', user);
 
 app.use((req, res, next) => {
     const error = new Error('Route not found.');
-    error.status = "404";
+    error.status = 404;
     next(error);
 });
 

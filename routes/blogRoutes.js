@@ -24,6 +24,7 @@ router.get('/', (req, res, next) => {
     );
 });
 
+
 router.get('/article/:id', (req, res, next) => {
     const id = req.params.id;
     Blog.findById(id)
